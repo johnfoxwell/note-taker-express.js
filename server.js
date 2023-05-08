@@ -7,7 +7,7 @@ const notes = require('./db/db.json');
 const uuid = require('./helper/uuid');
 
 const app = express();
-const PORT = 3001;
+// const PORT = 3001;
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -76,6 +76,6 @@ app.post('/api/notes', (req, res) => {
 });
 
 // Listen() method
-app.listen(process.env.PORT || PORT, () =>
+app.listen(process.env.PORT, () =>
   console.log(`Example app listening at http://localhost:${PORT}`)
 );
