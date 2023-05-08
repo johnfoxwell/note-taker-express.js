@@ -7,7 +7,7 @@ const notes = require('./db/db.json');
 const uuid = require('./helper/uuid');
 
 const app = express();
-// const PORT = 3001;
+const PORT = 3001;
 
 app.use(express.json());
 app.use(express.static('public'));
