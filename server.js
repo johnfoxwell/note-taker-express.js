@@ -7,17 +7,20 @@ const notes = require('./db/db.json');
 const uuid = require('./helper/uuid');
 
 const app = express();
-// const PORT = 3001;
+// Comment out when uploading to heroku
+const PORT = 3001;
 
 app.use(express.json());
+// ??
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, 'index.html'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
-app.get('public/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/notes.html'))
+app.get('/notes', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 
@@ -25,7 +28,6 @@ app.get('public/notes', (req, res) =>
 
 // GET request for notes
 app.get('/api/notes', (req, res) => {
-    // Log our request to the terminal
     console.log(`${req.method} request received to get notes`);
     res.status(200).json(notes);
 });
@@ -75,7 +77,8 @@ app.post('/api/notes', (req, res) => {
   }
 });
 
+// Comment out when uploading to heroku
 // Listen() method
-// app.listen(process.env.PORT, () =>
-//   console.log(`Example app listening at http://localhost:${PORT}`)
-// );
+app.listen(process.env.PORT || PORT, () =>
+  console.log(`Example app listening at http://localhost:${PORT}`)
+);
